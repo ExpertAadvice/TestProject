@@ -1,0 +1,14 @@
+<resources>
+    <string name="app_name">TestProject</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="password_manager">Password Manager</string>
+    <string name="you_can_save_your_password_here">You can save your password here</string>
+    <string name="enter_password_key_here">Enter Password Key Here</string>
+    <string name="enter_password_value_here">Enter Password Value Here</string>
+    <string name="enter_password_desc_here">Enter Password Desc Here</string>
+    <string name="add">ADD</string>
+    <string name="clear">CLEAR</string>
+    <string name="show_all">SHOW ALL</string>
+    <string name="delete">DELETE</string>
+</resources>
