@@ -12,10 +12,28 @@
         android:orientation="vertical" >
 
         <androidx.appcompat.widget.AppCompatButton
-            android:id="@+id/go_to_pass_manager"
+            android:id="@+id/pass_manager"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/password_manager" />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/services"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/android_services" />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/broadcast"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/broadcast_receiver" />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/permission"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/permission_handler" />
 
     </LinearLayout>
 

@@ -9,13 +9,15 @@
     <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:background="#DC8787"
         tools:context=".ui.fragments.services.ServicesFragment">
 
-        <!-- TODO: Update blank fragment layout -->
         <TextView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:text="@string/hello_blank_fragment" />
+            android:textSize="32sp"
+            android:gravity="center"
+            android:text="Broadcast" />
 
     </FrameLayout>
 </layout>

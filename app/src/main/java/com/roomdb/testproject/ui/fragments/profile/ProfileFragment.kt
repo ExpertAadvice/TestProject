@@ -28,8 +28,20 @@ class ProfileFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        binding.goToPassManager.setOnClickListener {
+        binding.passManager.setOnClickListener {
             findNavController().navigate(R.id.action_profileFragment_to_fragmentMain)
+        }
+
+        binding.services.setOnClickListener {
+            findNavController().navigate(R.id.action_profileFragment_to_servicesFragment)
+        }
+
+        binding.broadcast.setOnClickListener {
+            findNavController().navigate(R.id.action_profileFragment_to_broadcastFragment)
+        }
+
+        binding.permission.setOnClickListener {
+            findNavController().navigate(R.id.action_profileFragment_to_permissionFragment)
         }
     }
 }

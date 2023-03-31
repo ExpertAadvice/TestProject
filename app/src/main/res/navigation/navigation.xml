@@ -9,14 +9,38 @@
         android:id="@+id/profileFragment"
         android:name="com.roomdb.testproject.ui.fragments.profile.ProfileFragment"
         android:label="fragment_profile"
-        tools:layout="@layout/fragment_profile" >
+        tools:layout="@layout/fragment_profile">
         <action
             android:id="@+id/action_profileFragment_to_fragmentMain"
             app:destination="@id/fragmentMain" />
+        <action
+            android:id="@+id/action_profileFragment_to_servicesFragment"
+            app:destination="@id/servicesFragment" />
+        <action
+            android:id="@+id/action_profileFragment_to_broadcastFragment"
+            app:destination="@id/broadcastFragment" />
+        <action
+            android:id="@+id/action_profileFragment_to_permissionFragment"
+            app:destination="@id/permissionFragment" />
     </fragment>
     <fragment
         android:id="@+id/fragmentMain"
         android:name="com.roomdb.testproject.ui.fragments.main.FragmentMain"
         android:label="FragmentMain"
         tools:layout="@layout/fragment_main" />
+    <fragment
+        android:id="@+id/servicesFragment"
+        android:name="com.roomdb.testproject.ui.fragments.services.ServicesFragment"
+        android:label="ServicesFragment"
+        tools:layout="@layout/fragment_services" />
+    <fragment
+        android:id="@+id/broadcastFragment"
+        android:name="com.roomdb.testproject.ui.fragments.broadcastreceivers.BroadcastFragment"
+        android:label="BroadcastFragment"
+        tools:layout="@layout/fragment_broadcast" />
+    <fragment
+        android:id="@+id/permissionFragment"
+        android:name="com.roomdb.testproject.ui.fragments.permissionmanager.PermissionFragment"
+        android:label="PermissionFragment"
+        tools:layout="@layout/fragment_permission" />
 </navigation>

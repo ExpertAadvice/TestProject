@@ -6,16 +6,81 @@
 
     </data>
 
-    <FrameLayout
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:gravity="center"
+        android:orientation="vertical"
         tools:context=".ui.fragments.services.ServicesFragment">
 
-        <!-- TODO: Update blank fragment layout -->
-        <TextView
+<!--        Camera Permission -->
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/cameraPermissionTv"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:text="@string/hello_blank_fragment" />
+            android:layout_height="wrap_content"
+            android:text=""
+            android:textAlignment="center"
+            android:textColor="@color/black"
+            android:textSize="20sp" />
 
-    </FrameLayout>
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/imageViewCamera"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:background="@color/black" />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/openCamera"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/open_camera" />
+
+<!--        Gallery Permission-->
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/galleryPermissionTv"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text=""
+            android:textAlignment="center"
+            android:textColor="@color/black"
+            android:textSize="20sp" />
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/imageViewGallery"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:background="@color/black" />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/openGallery"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/open_gallery" />
+
+<!--        Location Permission (LatLng)-->
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/locationPermissionTv"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text=""
+            android:textAlignment="center"
+            android:textColor="@color/black"
+            android:textSize="20sp" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/latLngTv"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text=""
+            android:textAlignment="center"
+            android:textColor="@color/black"
+            android:textSize="20sp" />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/getLocation"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/get_current_location" />
+
+    </LinearLayout>
 </layout>

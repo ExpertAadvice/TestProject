@@ -11,4 +11,12 @@
     <string name="clear">CLEAR</string>
     <string name="show_all">SHOW ALL</string>
     <string name="delete">DELETE</string>
+    <string name="android_services">Android Services</string>
+    <string name="broadcast_receiver">Broadcast Receiver</string>
+    <string name="permission_handler">Permission Handler</string>
+    <string name="open_camera">Open Camera</string>
+    <string name="open_gallery">Open Gallery</string>
+    <string name="get_current_location">Get Current Location</string>
+    <string name="camera_permission_granted">Camera Permission Granted</string>
+    <string name="camera_permission_denied">Camera Permission Denied</string>
 </resources>
