@@ -2,24 +2,27 @@ package com.roomdb.testproject.ui.fragments.permissionmanager
 
 import android.Manifest
 import android.app.AlertDialog
-import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
-import android.provider.MediaStore
-import android.provider.Settings
+import android.os.Environment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.activity.result.PickVisualMediaRequest
 import androidx.activity.result.contract.ActivityResultContracts
+import androidx.core.content.FileProvider
 import androidx.fragment.app.Fragment
 import com.roomdb.testproject.R
 import com.roomdb.testproject.databinding.FragmentPermissionBinding
-import com.roomdb.testproject.utils.snackBar
-import com.roomdb.testproject.utils.toast
+import java.io.File
+import java.text.SimpleDateFormat
+import java.util.*
 
-class PermissionFragment : Fragment() {
+
+open class PermissionFragment : Fragment() {
 
     private lateinit var binding: FragmentPermissionBinding
+    private lateinit var imageUri: Uri
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -48,9 +51,17 @@ class PermissionFragment : Fragment() {
     ) { isGranted ->
         if (isGranted) {
             binding.cameraPermissionTv.text = getString(R.string.camera_permission_granted)
+            imageUri = createImageFile()!!
+            cameraIntentLauncher.launch(imageUri)
         } else {
             shouldShowRationaleInfo()
         }
+    }
+
+    private val cameraIntentLauncher = registerForActivityResult(
+        ActivityResultContracts.TakePicture()
+    ) {
+        imageUri?.let { binding.imageViewCamera.setImageURI(it) }
     }
 
     private val galleryPickerLauncher = registerForActivityResult(
@@ -76,5 +87,14 @@ class PermissionFragment : Fragment() {
         val alert = dialogBuilder.create()
         alert.setTitle("AlertDialog")
         alert.show()
+    }
+
+    private fun createImageFile(): Uri? {
+        val timeStamp = SimpleDateFormat("yyyyMMdd_HHmmss").format(Date())
+        val imageFileName = "JPEG_" + timeStamp + "_"
+        val image = File(requireContext().filesDir, "${imageFileName}.jpg")
+        return FileProvider.getUriForFile(requireContext(),
+            "com.roomdb.testproject.fileprovider", image
+        )
     }
 }
