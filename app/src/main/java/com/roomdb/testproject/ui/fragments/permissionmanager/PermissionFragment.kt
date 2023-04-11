@@ -2,24 +2,33 @@ package com.roomdb.testproject.ui.fragments.permissionmanager
 
 import android.Manifest
 import android.app.AlertDialog
+import android.content.Intent
+import android.content.pm.PackageManager
 import android.net.Uri
+import android.os.Build
 import android.os.Bundle
 import android.os.Environment
+import android.provider.Settings
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.activity.result.PickVisualMediaRequest
 import androidx.activity.result.contract.ActivityResultContracts
+import androidx.core.app.ActivityCompat
+import androidx.core.content.ContextCompat
 import androidx.core.content.FileProvider
 import androidx.fragment.app.Fragment
 import com.roomdb.testproject.R
 import com.roomdb.testproject.databinding.FragmentPermissionBinding
+import com.roomdb.testproject.utils.toast
 import java.io.File
+import java.text.DateFormat
 import java.text.SimpleDateFormat
 import java.util.*
+import kotlin.collections.ArrayList
 
 
-open class PermissionFragment : Fragment() {
+class PermissionFragment : Fragment() {
 
     private lateinit var binding: FragmentPermissionBinding
     private lateinit var imageUri: Uri
@@ -38,15 +47,26 @@ open class PermissionFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         binding.openCamera.setOnClickListener {
-            permissionLauncher.launch(Manifest.permission.CAMERA)
+            cameraPermissionLauncher.launch(Manifest.permission.CAMERA)
         }
 
         binding.openGallery.setOnClickListener {
             galleryPickerLauncher.launch(PickVisualMediaRequest(ActivityResultContracts.PickVisualMedia.ImageOnly))
+            binding.galleryPermissionTv.text = getString(R.string.gallery_permission)
+        }
+
+        binding.getReadWritePermission.setOnClickListener {
+            if (checkStoragePermissions()) {
+                // Do Something here
+                binding.externalStorageTv.text = getString(R.string.storage_permission)
+            } else {
+                binding.externalStorageTv.text = getString(R.string.storage_permission_denied)
+                requestStoragePermissions()
+            }
         }
     }
 
-    private val permissionLauncher = registerForActivityResult(
+    private val cameraPermissionLauncher = registerForActivityResult(
         ActivityResultContracts.RequestPermission()
     ) { isGranted ->
         if (isGranted) {
@@ -61,7 +81,7 @@ open class PermissionFragment : Fragment() {
     private val cameraIntentLauncher = registerForActivityResult(
         ActivityResultContracts.TakePicture()
     ) {
-        imageUri?.let { binding.imageViewCamera.setImageURI(it) }
+        imageUri.let { binding.imageViewCamera.setImageURI(it) }
     }
 
     private val galleryPickerLauncher = registerForActivityResult(
@@ -77,7 +97,7 @@ open class PermissionFragment : Fragment() {
             .setCancelable(false)
             .setPositiveButton("OK") { dialog, _ ->
                 dialog.cancel()
-                permissionLauncher.launch(Manifest.permission.CAMERA)
+                cameraPermissionLauncher.launch(Manifest.permission.CAMERA)
             }
             .setNegativeButton("Cancel") { dialog, _ ->
                 dialog.cancel()
@@ -90,11 +110,89 @@ open class PermissionFragment : Fragment() {
     }
 
     private fun createImageFile(): Uri? {
-        val timeStamp = SimpleDateFormat("yyyyMMdd_HHmmss").format(Date())
+        val timeStamp = SimpleDateFormat("yyyyMMdd_HHmmss", Locale.getDefault()).format(Date())
         val imageFileName = "JPEG_" + timeStamp + "_"
         val image = File(requireContext().filesDir, "${imageFileName}.jpg")
-        return FileProvider.getUriForFile(requireContext(),
+        return FileProvider.getUriForFile(
+            requireContext(),
             "com.roomdb.testproject.fileprovider", image
         )
+    }
+
+
+
+    private fun checkStoragePermissions(): Boolean {
+        return if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
+            Environment.isExternalStorageManager()
+        } else {
+            val read = ContextCompat.checkSelfPermission(
+                requireContext(),
+                Manifest.permission.READ_EXTERNAL_STORAGE
+            )
+            val write = ContextCompat.checkSelfPermission(
+                requireContext(),
+                Manifest.permission.WRITE_EXTERNAL_STORAGE
+            )
+            write == PackageManager.PERMISSION_GRANTED && read == PackageManager.PERMISSION_GRANTED
+        }
+    }
+
+    private fun requestStoragePermissions() {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
+            try {
+                val intent = Intent()
+                intent.action = Settings.ACTION_MANAGE_ALL_FILES_ACCESS_PERMISSION
+                val uri = Uri.fromParts("package", requireActivity().packageName, null)
+                intent.data = uri
+                storagePermissionLauncher.launch(intent)
+            } catch (e: Exception) {
+                val intent = Intent()
+                intent.action = Settings.ACTION_MANAGE_ALL_FILES_ACCESS_PERMISSION
+                storagePermissionLauncher.launch(intent)
+            }
+        } else {
+            val permissions = arrayOf(
+                Manifest.permission.READ_EXTERNAL_STORAGE,
+                Manifest.permission.WRITE_EXTERNAL_STORAGE
+            )
+            storagePermissionBelow11Launcher.launch(permissions)
+        }
+    }
+
+    private val storagePermissionLauncher = registerForActivityResult(
+        ActivityResultContracts.StartActivityForResult()
+    ) {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
+            if (Environment.isExternalStorageManager()) {
+                // Do Something here
+                requireContext().toast("External storage permission granted")
+            } else {
+                // Do Something here
+                requireContext().toast("External storage permission denied")
+            }
+        } else {
+            // Android is below 11 R
+        }
+    }
+
+    private val storagePermissionBelow11Launcher = registerForActivityResult(
+        ActivityResultContracts.RequestMultiplePermissions()
+    ) {resultMap->
+
+        var allPermissionGranted = true
+        val deniedPermissionList = ArrayList<String>()
+
+        for (result in resultMap) {
+            deniedPermissionList.add(result.key)
+            allPermissionGranted = allPermissionGranted && result.value
+        }
+
+        if (allPermissionGranted) {
+            requireContext().toast("External storage permission granted")
+            // Do Something here
+        } else {
+            requireContext().toast("External storage permission denied")
+            // Handle cases
+        }
     }
 }

@@ -19,4 +19,8 @@
     <string name="get_current_location">Get Current Location</string>
     <string name="camera_permission_granted">Camera Permission Granted</string>
     <string name="camera_permission_denied">Camera Permission Denied</string>
+    <string name="external_storage_permission">External Storage Permission</string>
+    <string name="storage_permission">External storage permission granted</string>
+    <string name="storage_permission_denied">External storage permission denied</string>
+    <string name="gallery_permission">No permission required to access images</string>
 </resources>

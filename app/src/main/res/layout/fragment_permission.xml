@@ -6,81 +6,107 @@
 
     </data>
 
-    <LinearLayout
+    <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:gravity="center"
-        android:orientation="vertical"
-        tools:context=".ui.fragments.services.ServicesFragment">
+        android:fillViewport="true">
 
-<!--        Camera Permission -->
-        <androidx.appcompat.widget.AppCompatTextView
-            android:id="@+id/cameraPermissionTv"
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text=""
-            android:textAlignment="center"
-            android:textColor="@color/black"
-            android:textSize="20sp" />
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:orientation="vertical"
+            tools:context=".ui.fragments.services.ServicesFragment">
 
-        <androidx.appcompat.widget.AppCompatImageView
-            android:id="@+id/imageViewCamera"
-            android:layout_width="100dp"
-            android:layout_height="100dp"
-            android:background="@color/black" />
+            <!--        Camera Permission -->
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/cameraPermissionTv"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text=""
+                android:textAlignment="center"
+                android:textColor="@color/black"
+                android:textSize="20sp" />
 
-        <androidx.appcompat.widget.AppCompatButton
-            android:id="@+id/openCamera"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/open_camera" />
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/imageViewCamera"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:background="@color/black" />
 
-<!--        Gallery Permission-->
-        <androidx.appcompat.widget.AppCompatTextView
-            android:id="@+id/galleryPermissionTv"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text=""
-            android:textAlignment="center"
-            android:textColor="@color/black"
-            android:textSize="20sp" />
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/openCamera"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="20dp"
+                android:text="@string/open_camera" />
 
-        <androidx.appcompat.widget.AppCompatImageView
-            android:id="@+id/imageViewGallery"
-            android:layout_width="100dp"
-            android:layout_height="100dp"
-            android:background="@color/black" />
+            <!--        Gallery Permission-->
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/galleryPermissionTv"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text=""
+                android:textAlignment="center"
+                android:textColor="@color/black"
+                android:textSize="20sp" />
 
-        <androidx.appcompat.widget.AppCompatButton
-            android:id="@+id/openGallery"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/open_gallery" />
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/imageViewGallery"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:background="@color/black" />
 
-<!--        Location Permission (LatLng)-->
-        <androidx.appcompat.widget.AppCompatTextView
-            android:id="@+id/locationPermissionTv"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text=""
-            android:textAlignment="center"
-            android:textColor="@color/black"
-            android:textSize="20sp" />
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/openGallery"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="20dp"
+                android:text="@string/open_gallery" />
 
-        <androidx.appcompat.widget.AppCompatTextView
-            android:id="@+id/latLngTv"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text=""
-            android:textAlignment="center"
-            android:textColor="@color/black"
-            android:textSize="20sp" />
+            <!--        Location Permission (LatLng)-->
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/locationPermissionTv"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text=""
+                android:textAlignment="center"
+                android:textColor="@color/black"
+                android:textSize="20sp" />
 
-        <androidx.appcompat.widget.AppCompatButton
-            android:id="@+id/getLocation"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/get_current_location" />
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/latLngTv"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text=""
+                android:textAlignment="center"
+                android:textColor="@color/black"
+                android:textSize="20sp" />
 
-    </LinearLayout>
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/getLocation"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="20dp"
+                android:text="@string/get_current_location" />
+
+            <!--        External storage permission  -->
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/externalStorageTv"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textAlignment="center"
+                android:textColor="@color/black"
+                android:textSize="20sp" />
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/getReadWritePermission"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="20dp"
+                android:text="@string/external_storage_permission" />
+
+        </LinearLayout>
+
+    </androidx.core.widget.NestedScrollView>
 </layout>
