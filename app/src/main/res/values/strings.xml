@@ -24,4 +24,6 @@
     <string name="storage_permission_denied">External storage permission denied</string>
     <string name="gallery_permission">No permission required to access images</string>
     <string name="launch_notification">Launch Notification</string>
+    <string name="content_provider">Content Provider</string>
+    <string name="get_contact_list">Get Contact List</string>
 </resources>

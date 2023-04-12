@@ -40,6 +40,10 @@ class ProfileFragment : Fragment() {
             findNavController().navigate(R.id.action_profileFragment_to_broadcastFragment)
         }
 
+        binding.contentProvider.setOnClickListener {
+            findNavController().navigate(R.id.action_profileFragment_to_contentProviderFragment)
+        }
+
         binding.permission.setOnClickListener {
             findNavController().navigate(R.id.action_profileFragment_to_permissionFragment)
         }

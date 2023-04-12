@@ -9,30 +9,41 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:gravity="center"
-        android:orientation="vertical" >
+        android:orientation="vertical">
 
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/pass_manager"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_margin="10dp"
             android:text="@string/password_manager" />
 
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/services"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_margin="10dp"
             android:text="@string/android_services" />
 
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/broadcast"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_margin="10dp"
             android:text="@string/broadcast_receiver" />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/contentProvider"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:text="@string/content_provider" />
 
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/permission"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_margin="10dp"
             android:text="@string/permission_handler" />
 
     </LinearLayout>

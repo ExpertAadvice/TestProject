@@ -22,6 +22,9 @@
         <action
             android:id="@+id/action_profileFragment_to_permissionFragment"
             app:destination="@id/permissionFragment" />
+        <action
+            android:id="@+id/action_profileFragment_to_contentProviderFragment"
+            app:destination="@id/contentProviderFragment" />
     </fragment>
     <fragment
         android:id="@+id/fragmentMain"
@@ -43,4 +46,9 @@
         android:name="com.roomdb.testproject.ui.fragments.permissionmanager.PermissionFragment"
         android:label="PermissionFragment"
         tools:layout="@layout/fragment_permission" />
+    <fragment
+        android:id="@+id/contentProviderFragment"
+        android:name="com.roomdb.testproject.ui.fragments.contentprovider.ContentProviderFragment"
+        android:label="ContentProviderFragment"
+        tools:layout="@layout/fragment_content_provider" />
 </navigation>
