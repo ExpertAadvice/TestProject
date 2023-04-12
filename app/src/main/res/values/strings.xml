@@ -23,4 +23,5 @@
     <string name="storage_permission">External storage permission granted</string>
     <string name="storage_permission_denied">External storage permission denied</string>
     <string name="gallery_permission">No permission required to access images</string>
+    <string name="launch_notification">Launch Notification</string>
 </resources>
