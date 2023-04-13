@@ -1,6 +1,7 @@
 package com.roomdb.testproject.ui.fragments.permissionmanager
 
 import android.Manifest
+import android.annotation.SuppressLint
 import android.app.AlertDialog
 import android.content.Intent
 import android.content.pm.PackageManager
@@ -18,15 +19,26 @@ import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import androidx.core.content.FileProvider
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.lifecycleScope
 import com.roomdb.testproject.R
 import com.roomdb.testproject.databinding.FragmentPermissionBinding
+import com.roomdb.testproject.ui.fragments.permissionmanager.locationutils.LocationClient
+import com.roomdb.testproject.ui.fragments.permissionmanager.locationutils.LocationService
+import com.roomdb.testproject.ui.fragments.services.channelclass.ServiceExample
+import com.roomdb.testproject.utils.hasLocationPermission
 import com.roomdb.testproject.utils.toast
+import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.flow.catch
+import kotlinx.coroutines.flow.collectLatest
+import kotlinx.coroutines.flow.launchIn
+import kotlinx.coroutines.flow.onEach
+import kotlinx.coroutines.launch
 import java.io.File
 import java.text.DateFormat
 import java.text.SimpleDateFormat
 import java.util.*
+import javax.inject.Inject
 import kotlin.collections.ArrayList
-
 
 class PermissionFragment : Fragment() {
 
@@ -43,6 +55,7 @@ class PermissionFragment : Fragment() {
         return binding.root
     }
 
+    @SuppressLint("SetTextI18n")
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
@@ -63,6 +76,31 @@ class PermissionFragment : Fragment() {
                 binding.externalStorageTv.text = getString(R.string.storage_permission_denied)
                 requestStoragePermissions()
             }
+        }
+
+        binding.latLngTv.text = "Location Permission Denied"
+
+        binding.startLocation.setOnClickListener {
+            if (requireContext().hasLocationPermission()) {
+
+                binding.latLngTv.text = "Location Permission Granted"
+                val intent = Intent(requireContext(), LocationService::class.java)
+                intent.action = LocationService.ACTION_START
+                ContextCompat.startForegroundService(requireContext(), intent)
+            } else {
+                locationPermissionLauncher.launch(
+                    arrayOf(
+                        Manifest.permission.ACCESS_COARSE_LOCATION,
+                        Manifest.permission.ACCESS_FINE_LOCATION
+                    )
+                )
+            }
+        }
+
+        binding.stopLocation.setOnClickListener {
+            val intent = Intent(requireContext(), LocationService::class.java)
+            intent.action = LocationService.ACTION_STOP
+            ContextCompat.startForegroundService(requireContext(), intent)
         }
     }
 
@@ -118,7 +156,6 @@ class PermissionFragment : Fragment() {
             "com.roomdb.testproject.fileprovider", image
         )
     }
-
 
 
     private fun checkStoragePermissions(): Boolean {
@@ -177,7 +214,7 @@ class PermissionFragment : Fragment() {
 
     private val storagePermissionBelow11Launcher = registerForActivityResult(
         ActivityResultContracts.RequestMultiplePermissions()
-    ) {resultMap->
+    ) { resultMap ->
 
         var allPermissionGranted = true
         val deniedPermissionList = ArrayList<String>()
@@ -195,4 +232,26 @@ class PermissionFragment : Fragment() {
             // Handle cases
         }
     }
+
+    private val locationPermissionLauncher = registerForActivityResult(
+        ActivityResultContracts.RequestMultiplePermissions()
+    ) { resultMap ->
+
+        var allPermissionGranted = true
+        val deniedPermissionList = ArrayList<String>()
+
+        for (result in resultMap) {
+            deniedPermissionList.add(result.key)
+            allPermissionGranted = allPermissionGranted && result.value
+        }
+
+        if (allPermissionGranted) {
+            requireContext().toast("Location permission granted")
+            // Do Something here
+        } else {
+            requireContext().toast("Location permission denied")
+            // Handle cases
+        }
+    }
+
 }

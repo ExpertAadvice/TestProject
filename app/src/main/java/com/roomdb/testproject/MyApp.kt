@@ -16,6 +16,19 @@ class MyApp : Application() {
     override fun onCreate() {
         super.onCreate()
 
+        // Location foreground service
+        if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            val locationServiceChannel = NotificationChannel(
+                "location",
+                "Location",
+                NotificationManager.IMPORTANCE_LOW
+            )
+            val notificationManager = getSystemService(NotificationManager::class.java)
+            notificationManager.createNotificationChannel(locationServiceChannel)
+        }
+
+
+        // Notification foreground service
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
             val serviceChannel = NotificationChannel(
                 channelId,"service example",

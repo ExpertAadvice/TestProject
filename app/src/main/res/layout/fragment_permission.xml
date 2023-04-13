@@ -62,18 +62,10 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="20dp"
+                android:gravity="center"
                 android:text="@string/open_gallery" />
 
             <!--        Location Permission (LatLng)-->
-            <androidx.appcompat.widget.AppCompatTextView
-                android:id="@+id/locationPermissionTv"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text=""
-                android:textAlignment="center"
-                android:textColor="@color/black"
-                android:textSize="20sp" />
-
             <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/latLngTv"
                 android:layout_width="match_parent"
@@ -83,12 +75,27 @@
                 android:textColor="@color/black"
                 android:textSize="20sp" />
 
-            <androidx.appcompat.widget.AppCompatButton
-                android:id="@+id/getLocation"
-                android:layout_width="wrap_content"
+            <LinearLayout
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="20dp"
-                android:text="@string/get_current_location" />
+                android:gravity="center_horizontal"
+                android:orientation="horizontal">
+
+                <androidx.appcompat.widget.AppCompatButton
+                    android:id="@+id/startLocation"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/start_location_service" />
+
+                <androidx.appcompat.widget.AppCompatButton
+                    android:id="@+id/stopLocation"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="20dp"
+                    android:text="@string/stop_location_service" />
+
+            </LinearLayout>
 
             <!--        External storage permission  -->
             <androidx.appcompat.widget.AppCompatTextView
