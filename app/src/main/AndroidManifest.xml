@@ -67,6 +67,8 @@
             </intent-filter>
         </activity>
 
+        <activity android:name=".ui_activity.UiActivity" android:exported="false" />
+
         <!--    Capture images using Camera -->
         <provider
             android:name="androidx.core.content.FileProvider"

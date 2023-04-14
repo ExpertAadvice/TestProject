@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/maingraph"
+    app:startDestination="@id/homeUiFragment">
+
+    <fragment
+        android:id="@+id/homeUiFragment"
+        android:name="com.roomdb.testproject.ui_activity.uihome.HomeUiFragment"
+        android:label="HomeUiFragment"
+        tools:layout="@layout/fragment_home_ui">
+        <action
+            android:id="@+id/action_homeUiFragment_to_bottomSheetFragment"
+            app:destination="@id/bottomSheetFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right" />
+        <action
+            android:id="@+id/action_homeUiFragment_to_bottomNavigationFragment"
+            app:destination="@id/bottomNavigationFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right" />
+        <action
+            android:id="@+id/action_homeUiFragment_to_drawerLayoutFragment"
+            app:destination="@id/drawerLayoutFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right" />
+        <action
+            android:id="@+id/action_homeUiFragment_to_tabLayoutFragment"
+            app:destination="@id/tabLayoutFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right" />
+    </fragment>
+    <fragment
+        android:id="@+id/drawerLayoutFragment"
+        android:name="com.roomdb.testproject.ui_activity.drawerlayout.DrawerLayoutFragment"
+        android:label="DrawerLayoutFragment"
+        tools:layout="@layout/fragment_drawer_layout" />
+    <fragment
+        android:id="@+id/tabLayoutFragment"
+        android:name="com.roomdb.testproject.ui_activity.tablayout.TabLayoutFragment"
+        android:label="TabLayoutFragment"
+        tools:layout="@layout/fragment_tab" />
+    <fragment
+        android:id="@+id/bottomNavigationFragment"
+        android:name="com.roomdb.testproject.ui_activity.bottmnav.BottomNavigationFragment"
+        android:label="BottomNavigationFragment"
+        tools:layout="@layout/fragment_bottom_navigation">
+        <action
+            android:id="@+id/action_bottomNavigationFragment_to_drawerLayoutFragment"
+            app:destination="@id/drawerLayoutFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right" />
+    </fragment>
+    <fragment
+        android:id="@+id/bottomSheetFragment"
+        android:name="com.roomdb.testproject.ui_activity.bottomsheet.BottomSheetFragment"
+        android:label="BottomSheetFragment"
+        tools:layout="@layout/fragment_bottmsheet" />
+
+</navigation>

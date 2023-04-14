@@ -6,7 +6,7 @@ import android.os.Bundle
 import androidx.databinding.DataBindingUtil
 import com.roomdb.testproject.R
 import com.roomdb.testproject.databinding.ActivityMainBinding
-import dagger.hilt.android.AndroidEntryPoint
+import com.roomdb.testproject.ui_activity.UiActivity
 
 class MainActivity : AppCompatActivity() {
 
@@ -16,12 +16,19 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = DataBindingUtil.setContentView(this, R.layout.activity_main)
 
-        val intent = Intent(this, MainActivity2::class.java)
-        startActivity(intent)
-
         binding.button.setOnClickListener {
-//            val intent = Intent(this, MainActivity2::class.java)
-//            startActivity(intent)
+            val intent = Intent(this, MainActivity2::class.java)
+            startActivity(intent)
+        }
+
+        binding.navigateToUi.setOnClickListener {
+            val intent = Intent(this, UiActivity::class.java)
+            startActivity(intent)
+        }
+
+        binding.navigateToSampleApps.setOnClickListener {
+            val intent = Intent(this, UiActivity::class.java)
+            startActivity(intent)
         }
     }
 }
