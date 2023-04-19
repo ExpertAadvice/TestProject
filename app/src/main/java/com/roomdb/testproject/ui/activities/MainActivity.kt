@@ -1,8 +1,8 @@
 package com.roomdb.testproject.ui.activities
 
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import com.roomdb.testproject.R
 import com.roomdb.testproject.databinding.ActivityMainBinding

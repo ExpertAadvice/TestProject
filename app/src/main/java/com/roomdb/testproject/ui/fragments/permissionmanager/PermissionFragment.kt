@@ -15,30 +15,17 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.activity.result.PickVisualMediaRequest
 import androidx.activity.result.contract.ActivityResultContracts
-import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import androidx.core.content.FileProvider
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.lifecycleScope
 import com.roomdb.testproject.R
 import com.roomdb.testproject.databinding.FragmentPermissionBinding
-import com.roomdb.testproject.ui.fragments.permissionmanager.locationutils.LocationClient
 import com.roomdb.testproject.ui.fragments.permissionmanager.locationutils.LocationService
-import com.roomdb.testproject.ui.fragments.services.channelclass.ServiceExample
 import com.roomdb.testproject.utils.hasLocationPermission
 import com.roomdb.testproject.utils.toast
-import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.coroutines.flow.catch
-import kotlinx.coroutines.flow.collectLatest
-import kotlinx.coroutines.flow.launchIn
-import kotlinx.coroutines.flow.onEach
-import kotlinx.coroutines.launch
 import java.io.File
-import java.text.DateFormat
 import java.text.SimpleDateFormat
 import java.util.*
-import javax.inject.Inject
-import kotlin.collections.ArrayList
 
 class PermissionFragment : Fragment() {
 
